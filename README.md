@@ -3,7 +3,7 @@
 [![Social](https://img.shields.io/badge/social-telegram-lightgray.svg)](https://teleg.run/c1ewd)
 [![Donations](https://img.shields.io/badge/donations-Liberapay-green.svg)](https://liberapay.com/c1ewd/donate)
 
-I stated from the opposite side. I was looking through the OpenWRT build rules and found zyimage.c. That's the utility that signs all Keenetic images. Device ID that needs for sign is located in the source code of this utility:
+I stated from the opposite side. I was looking through the OpenWRT build rules and found `zyimage.c`. That's the utility that signs all Keenetic images. The device ID that needs for sign is located in the source code of this utility:
 
 ```
   struct signature
@@ -15,7 +15,7 @@ I stated from the opposite side. I was looking through the OpenWRT build rules a
   }
 ```
 
-The start of this C structure located at offset 0x500000 of my stock firmware:
+The start of this C structure located at offset `0x500000` of my stock firmware:
 
 ```
 Offset      0  1  2  3  4  5  6  7   8  9  A  B  C  D  E  F
@@ -26,7 +26,7 @@ Offset      0  1  2  3  4  5  6  7   8  9  A  B  C  D  E  F
 00500030   35 36 37 2D 37 37 61 00  4B 31 21 A3               567-77a K1!£
 ```
 
-Worth remembering about little endian and that int type is 4 bytes. So, device ID is 2102018.
+Worth remembering about little endian and that int type is 4 bytes. So, device ID is `2102018`.
 Finally, the build rule below:
 
 ```
