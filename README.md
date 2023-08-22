@@ -3,7 +3,7 @@
 [![Social](https://img.shields.io/badge/social-telegram-lightgray.svg)](https://teleg.run/c1ewd)
 [![Donations](https://img.shields.io/badge/donations-Liberapay-green.svg)](https://liberapay.com/c1ewd/donate)
 
-In Keenetic situation I was going against the grain. I was discovering the OpenWRT build rules and I found zyimage.c. That's the utility that signing all Keenetic images. The source code of this utility opened to me where located device ID needs for sign:
+I stated from the opposite side. I was looking through the OpenWRT build rules and found zyimage.c. That's the utility that signs all Keenetic images. Device ID that needs for sign is located in the source code of this utility:
 
 ```
   struct signature
@@ -15,7 +15,7 @@ In Keenetic situation I was going against the grain. I was discovering the OpenW
   }
 ```
 
-The start of this c structure located at offset 0x500000 my stock firmware:
+The start of this C structure located at offset 0x500000 of my stock firmware:
 
 ```
 Offset      0  1  2  3  4  5  6  7   8  9  A  B  C  D  E  F
@@ -26,9 +26,8 @@ Offset      0  1  2  3  4  5  6  7   8  9  A  B  C  D  E  F
 00500030   35 36 37 2D 37 37 61 00  4B 31 21 A3               567-77a K1!£
 ```
 
-Worth remembering about little endian and int type is 4 bytes. So, device ID is 2102018.
-
-Finally, a build rule below:
+Worth remembering about little endian and that int type is 4 bytes. So, device ID is 2102018.
+Finally, the build rule below:
 
 ```
 define Device/zyxel_keenetic-lite-iii-a
@@ -47,4 +46,3 @@ TARGET_DEVICES += zyxel_keenetic-lite-iii-a
 ## Donations (Optional)
 
 [![Liberapay](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/c1ewd/donate)
-
